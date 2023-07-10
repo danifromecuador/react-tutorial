@@ -8,7 +8,7 @@ const Items = () => {
   ];
   return (
     <ul>
-      <Item />
+      <Item ItemsArray={ItemsArray}/>
     </ul>
   )
 }
