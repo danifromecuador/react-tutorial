@@ -1,9 +1,10 @@
 import Items from '../components/Items';
 import Input from '../components/Input';
 const Logic = () => {
-  const array = [];
+  const array = localStorage.getItem('array') ? JSON.parse(localStorage.getItem('array')) : [];
   const updateArray = (inputValue) => {
-    array.push(inputValue);
+    array.push({ id: array.length + 1, description: `${inputValue}`, completed: false });
+    localStorage.setItem('array', JSON.stringify(array));
     console.log(array);
   }
   return (

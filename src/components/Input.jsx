@@ -9,7 +9,6 @@ export const Input = ({ updateArray }) => {
   };
 
   const handleSave = () => {
-    console.log(inputValue);
     updateArray(inputValue);
     setInputValue('');
   };
