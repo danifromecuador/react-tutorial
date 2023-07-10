@@ -1,11 +1,9 @@
-import Items from "./Items"
-
-const Item = ({ ItemsArray }) => {
+const Item = ({array}) => {
   return (
-    ItemsArray.map(item =>
+    array.map(item =>
       <li key={item.id}>
         <input type="checkbox" name="" id="" />
-        <span>{item.name}</span>
+        <span>{item.description}</span>
         <button type="button">edit</button>
         <button type="button">delete</button>
       </li>)

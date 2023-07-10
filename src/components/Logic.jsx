@@ -1,16 +1,28 @@
 import Items from '../components/Items';
 import Input from '../components/Input';
+import { useState } from 'react';
 const Logic = () => {
-  const array = localStorage.getItem('array') ? JSON.parse(localStorage.getItem('array')) : [];
-  const updateArray = (inputValue) => {
-    array.push({ id: array.length + 1, description: `${inputValue}`, completed: false });
-    localStorage.setItem('array', JSON.stringify(array));
-    console.log(array);
-  }
+  const [inputValue, setInputValue] = useState('');
+  const [array, setArray] = useState(JSON.parse(localStorage.getItem('array')) || []);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSave = () => {
+    if (inputValue !== '') {
+      array.push({ id: array.length + 1, description: `${inputValue}`, completed: false });
+      setArray(array);
+      localStorage.setItem('array', JSON.stringify(array));
+      console.log(array);
+      setInputValue('');
+    }
+  };
+
   return (
     <>
-    <Input updateArray={updateArray}/>
-    <Items />
+      <Input handleSave={handleSave} handleInputChange={handleInputChange} inputValue={inputValue} />
+      <Items array={array} />
     </>
   )
 }

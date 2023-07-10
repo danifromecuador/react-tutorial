@@ -1,18 +1,6 @@
 import { useState } from "react";
 
-export const Input = ({ updateArray }) => {
-
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSave = () => {
-    updateArray(inputValue);
-    setInputValue('');
-  };
-
+export const Input = ( {handleInputChange, inputValue, handleSave} ) => {
   return (
     <>
       <input type="text" placeholder="add todo..." value={inputValue} onChange={handleInputChange}/>
