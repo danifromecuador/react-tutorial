@@ -5,6 +5,7 @@ import '../styles/Logic.css';
 
 const Logic = () => {
   const [inputValue, setInputValue] = useState('');
+  const [checkedValue, setCheckedValue] = useState(false);
   const [array, setArray] = useState(JSON.parse(localStorage.getItem('array')) || []);
 
   const handleInputChange = (e) => {
@@ -12,19 +13,27 @@ const Logic = () => {
   };
 
   const handleSave = () => {
-    if (inputValue !== '') {
+    if (inputValue) {
       array.push({ id: array.length + 1, description: `${inputValue}`, completed: false });
       setArray(array);
       localStorage.setItem('array', JSON.stringify(array));
-      console.log(array);
       setInputValue('');
     }
+  };
+
+  const completed = (event) => {
+    const index = event.target.id - 1;
+    array[index].completed = !array[index].completed;
+    setArray(array);
+    localStorage.setItem('array', JSON.stringify(array));
+    setCheckedValue(array[index].completed);
+    console.log(checkedValue);
   };
 
   return (
     <div className='logic'>
       <Input handleSave={handleSave} handleInputChange={handleInputChange} inputValue={inputValue} />
-      <Items array={array} />
+      <Items array={array} completed={completed}/>
     </div>
   )
 }
