@@ -10,8 +10,6 @@ const Items = ({array, completed}) => {
   )
 }
 
-
-
 Items.propTypes = {
   array: PropTypes.array.isRequired,
   completed: PropTypes.func.isRequired,

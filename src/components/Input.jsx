@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
 import '../styles/Input.css';
 
-export const Input = ( {handleInputChange, inputValue, handleSave} ) => {
+const Input = ( {handleInputChange, inputValue, handleSave} ) => {
+  const enterHandler = (e) => {
+    if (e.key === 'Enter') handleSave();
+  } 
+  
   return (
     <div className='input'>
-      <input type="text" placeholder="add todo..." value={inputValue} onChange={handleInputChange}/>
+      <input
+         type="text"
+         placeholder="add todo..."
+         value={inputValue}
+         onChange={handleInputChange}
+         onKeyDown={enterHandler}
+      />
       <button type="button" onClick={handleSave}>save</button>
     </div>
   )
